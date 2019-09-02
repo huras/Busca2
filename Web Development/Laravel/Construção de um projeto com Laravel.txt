@@ -1,0 +1,15 @@
+Estudar estrutura das páginas
+Nomear Models
+Nomear componentes
+Nomear rotas
+Seguir regras simples e lógicas de componentização
+Distribuir construção dos menores componentes (sem estilização! Apenas html e classes)
+Distribuir construção das páginas com os @ do Laravel
+Estilização das classes nos componentes
+Modais, máscaras, animações, meta tags
+Conexões entre as páginas, urls
+Migrations
+Controllers
+CRUDs front, Recaptcha, UTMs
+CRUDs back
+Páginas especiais
