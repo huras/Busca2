@@ -1,0 +1,31 @@
+//Crie um seeder
+php artisan make:seeder ConfiguracoesTableSeeder
+
+
+//Coloque
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class ConfiguracoesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('configuracoes')->insert([
+            'name' => 'tempo_minimo_cancelamento',
+            'value' => '24'
+        ]);
+    }
+}
+
+//Adicione
+$this->call(ConfiguracoesTableSeeder::class);
+no run() do DatabaseSeeder
+
+php artisan db:seed
