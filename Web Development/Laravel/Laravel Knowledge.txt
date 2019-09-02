@@ -1,0 +1,104 @@
+"Bakar" usando o artisan :
+
+php artisan make:Model client/meuArquivoNome
+
+Exception, Controller, Repository, Resource, Model
+
+============================================================
+
+Criar migrations
+
+php artisan make:migration drop_shots_and_register_in_automations --table=nomeTabela
+
+============================================================
+
+Executar migrations de um banco de dados específico
+
+php artisan migrate --path=database/migrations/client --database=client
+
+============================================================
+
+Rollback migrations
+
+php artisan migrate:rollback --path=database/migrations/client --database=client
+
+============================================================
+
+Writing migration
+
+Schema::table('mobilizations_has_registers', function (Blueprint $table) {
+        $table->boolean('status')->default(0)->change();
+	$table->integer('register_id')->nullable()->after('user_id');
+	$table->dropColumn('user_id');
+	$table->foreign('mobilization_id')->references('id')->on('mobilizations');
+	$table->dropIfExists('blacklists');
+	$table->text('content');
+	$table->timestamps();
+});
+
+============================================================
+
+Model => 
+Repository => Realiza os troca-trocas com o banco de dados
+Resource => Formata os dados para serem exibidos no formato que a view espera
+Request => Valida as parada
+Controller => Define a ordem e quais ações vão acontecer com os dados das requests
+Unit Test => Testa insert, view, edit, delete
+Feature Test => Testa ações?
+Factory => Fabrica fake data daquele model pro teste
+
+============================================================
+
+RODAR O SERVIDOR
+php artisan serve
+
+============================================================
+
+DEBUG AND DIE
+dd($request->all());
+
+============================================================
+
+EXIBIR TODAS AS ROTAS DO PROJETO
+php artisan r:l
+
+============================================================
+
+RODA TODOS OS TESTES 
+vendor/bin/phpunit tests/Client/
+
+
+RODA UM TESTE SÓ
+vendor/bin/phpunit tests/Client/Unit/AutomationTest.php
+vendor/bin/phpunit tests/Client/Feature/AutomationTest.php
+
+
+============================================================
+
+Cria os testes de unidade e features
+
+php artisan make:test AutomationTest
+php artisan make:test AutomationTest --unit
+
+============================================================
+
+Criar registros aleatórios no banco de dados usando o ARTISAN TINKER
+
+//No .env
+DB_CONNECTION=admin
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=cliente_2
+DB_USERNAME=root
+DB_PASSWORD=
+
+php artisan tinker
+factory(\App\Models\Client\Automation::class)->create();
+
+============================================================
+
+RUN PHP CODE INSIDE VIEW WITHOUT THE <?php ?> SHIT
+
+@php
+	parse_str( parse_url( $midia->youtube, PHP_URL_QUERY ), $youtube );
+@endphp

@@ -1,0 +1,6 @@
+=> Laravel
+
+=== Instalation ===
+
+composer create-project --prefer-dist laravel/laravel [Project Name]
+

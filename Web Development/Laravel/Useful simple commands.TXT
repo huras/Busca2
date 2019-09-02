@@ -1,0 +1,21 @@
+* Create a public directory so imgs, css and js may be acessed by the users
+'php artisan link:storage'
+
+=== Summoning ===
+
+* Summons and start the Server
+'php artisan server'
+
+* Summon an Tinker that has PHP skills
+'php artisan tinker'
+
+=== Tinker Skills ===
+bcrypt($password) = encrypts a string
+
+=== Creation ===
+
+* Create Controller 
+'php make:controller $ControllerName'
+
+* Create Model
+'php make:model $ModelName'
