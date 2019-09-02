@@ -1,0 +1,21 @@
+* = Ignora todos os arquivos
+Busca/* = Ignora todos os arquivos dentro de busca
+!Busca/ = Não ignora os arquivos dentro de busca
+
+==============================
+              ex
+==============================
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
+/nbproject/private/
+==============================

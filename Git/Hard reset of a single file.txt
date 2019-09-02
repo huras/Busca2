@@ -1,0 +1,3 @@
+git checkout HEAD -- app/Mail/AssocieseForm.php
+
+git checkout --force BRANCH-NAME
