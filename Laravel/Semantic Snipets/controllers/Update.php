@@ -24,10 +24,8 @@ class ClientesController extends Controller
 
     //Stores from multiple fields
         //Requires $fillable in the model
-    public function massUpdate(Request $request, $id){
-        $cliente = Cliente::create($request->all());
-
-        Cliente::where('active', 1)
+    public function massUpdate(Request $request, $id) {
+        Cliente::where('id', $id)
           ->update($request->all());
     
         return redirect()
