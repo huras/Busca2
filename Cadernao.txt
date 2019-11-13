@@ -1,0 +1,13 @@
+HTML5
+CSS3
+ES6
+SASS
+Laravel
+Node
+React Native
+    usa o Chocolatey pra instalar o Node, Python2 e JDK8
+    
+React
+Ionic
+    AngularJS
+    Cordova
