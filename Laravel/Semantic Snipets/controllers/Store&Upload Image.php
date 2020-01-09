@@ -33,4 +33,50 @@ class ClientesController extends Controller
                 'alertType' => 'bg-success'
         ]);
     }
+
+    public function upload(Request $request) {
+        $folder_id = $request->folder_id;
+
+        foreach($request->file('file') as $key => $file){
+
+            $fileName = $file->getClientOriginalName();
+            $absoluteFileSize = $file->getSize();
+
+            //Solve file name and location
+            $destinationPath = 'public/file/'; // upload path
+            $profilefile = date('YmdHis') . $key . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $profilefile);
+
+            //Solve file size
+            $base = log($absoluteFileSize, 1024);
+            $suffixes = array('B', 'KB', 'MB', 'GB', 'TB');
+            $fileSize = round(pow(1024, $base - floor($base)), 2) .' '. $suffixes[floor($base)];
+
+            $path_parts = pathinfo($fileName);
+
+            $newFile = [
+                'name' => $path_parts['filename'],
+                'filename' => $profilefile,
+                'size' => $fileSize,
+                'folder_id' => $folder_id,
+                'absoluteSize' => $absoluteFileSize,
+                'views' => 0,
+            ];
+
+            File::create($newFile);
+        }
+
+        return back();
+    }
+
+    public function download($id) {
+        $targetFile = File::find($id);
+
+        $file = public_path()."\\public\\file\\".$targetFile->filename;
+        $fileExt = pathinfo($targetFile->filename, PATHINFO_EXTENSION);
+        $headers = array(
+            'Content-Type: application/'.$fileExt ,
+        );
+        return response()->download($file, $targetFile->name.'.'.$fileExt, $headers);
+    }
 }

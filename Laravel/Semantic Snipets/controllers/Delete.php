@@ -13,6 +13,7 @@ use App\Document;
 class FileController extends Controller
 {
 
+    //Ajax delete
     public function delete($id) {
         $this->deleteFile($id);
 

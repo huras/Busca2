@@ -17,6 +17,7 @@ class CreatePessoasTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('card_id');
             
+            $table->bigInteger('votes'); //BIGINT equivalent column. Equivalent to bigint(20)
             $table->boolean('banned'); //BOOLEAN equivalent column. Equivalent to tiny_int(1) in the data base
             $table->integer('number_of_copies'); //INTEGER equivalent column.
             $table->decimal('preco', 9, 2); //DECIMAL equivalent column with a precision (total digits) and scale (decimal digits).
@@ -34,7 +35,7 @@ class CreatePessoasTable extends Migration
 
             $table->enum('sabor', ['morango', 'chocolate', 'côco', 'napolitano']); //ENUM equivalent column. While ENUM can only hold one value, SET can hold a collection of them
             $table->set('pokemon_types', ['Water', 'Fire', 'Electric', 'Grass', 'Rock', 'Dragon', 'Flying']); //SET equivalent column. While ENUM can only hold one value, SET can hold a collection of them            
-            
+
             $table->integer('valor1')->nullable(); //Allows (by default) NULL values to be inserted into the column
             $table->integer('valor2')->unsigned(); //Allows (by default) NULL values to be inserted into the column
             //$table->integer('total')->virtualAs($expression); Create a virtual generated column (MySQL)
