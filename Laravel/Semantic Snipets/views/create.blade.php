@@ -19,9 +19,9 @@
             <div class="col-md-6 col-12">
                 <label>Nome:</label>
                 <input name='nome' value='{{old("nome")}}' placeholder="Nome" class="form-control item crazy_name" type="text" required>
-                @if ($errors->has('email'))
-                    <span>{{ $errors->first('email') }}</span>
-                @endif
+                @error('nome')
+                    <span>{{ $message }}</span>
+                @enderror
             </div>
         </div>
     </form>
