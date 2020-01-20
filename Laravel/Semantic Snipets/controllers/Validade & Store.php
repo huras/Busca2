@@ -8,26 +8,28 @@ use Validator;
 
 class ClientesController extends Controller
 {
-  public function create(Request $request){
+  public function saveForm(Request $request){
     $form = $request->all();
   
     $val = $this->validateRequest($form);
     //dd($val->errors());
     if($form['g-recaptcha-response'] == null){
-          return redirect()->action('TesteDeSiteController@showForm')
+          return redirect()->action('ClientesController@showForm')
                   ->withInput()
                   ->withErrors($val)
                   ->with(['error-recaptcha' => true]);
       } else if ($val->fails()) {
-          return redirect()->action('TesteDeSiteController@showForm')
+          return redirect()->action('ClientesController@showForm')
                   ->withInput()
                   ->withErrors($val)
                   ->with(['error-recaptcha' => true]);
       } else {
-
+          cliente = Cliente::create($form);
       }
     
-      return view('pages/teste-seu-site')->with(['form-success' => true]);;
+      return redirect()
+                ->action('ClientesController@showForm')
+                ->with(['form-success' => true]);
   }
 
   private function validateRequest($request)
