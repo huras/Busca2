@@ -18,11 +18,36 @@
         <div class='row'>
             <div class="col-md-6 col-12">
                 <label>Nome:</label>
-                <input name='nome' value='{{old("nome")}}' placeholder="Nome" class="form-control item crazy_name" type="text" required>
-                @error('nome')
+                <input  name='email' 
+                        value='{{old("nome")}}' 
+                        placeholder="Nome" 
+                        class="form-control item crazy_name @error('email') has-error @enderror" 
+                        type="text" 
+                        required
+                >
+                @error('email')
                     <span>{{ $message }}</span>
                 @enderror
             </div>
+            
+            <div class='f-group'>
+                <div id="recaptcha-div"></div>
+                <br/>
+                @if(session('error-recaptcha'))
+                    <div class='mensagem-erro'>
+                        Por favor, faça o teste anti robo.
+                    </div>
+                @endif
+            </div>
+            
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+            <script>
+                var onloadCallback = function() {
+                grecaptcha.render('recaptcha-div', {
+                  'sitekey' : 'asd5qwe3AAC-p-qsd1qw23es8df723r-Ksad9834j'
+                });
+              };
+            </script>
         </div>
     </form>
 </body>
